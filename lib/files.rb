@@ -5,10 +5,11 @@ def get_files_in_dir(path)
   entries.reject { |e| File.directory?("#{path}/#{e}") }
 end
 
-def largest_less_used_file(path, amount: 1)
+def luggage(path, amount: 1)
   files = get_files_in_dir(path)
-  files.min_by(amount) { |file| File.atime("#{path}/#{file}") }
-  return files.first if files.size == 1
+  oldest_files = files.min_by(amount) { |file| File.atime("#{path}/#{file}") }
+  return oldest_files.first(1) if oldest_files.size == 1
 
-  files.max_by { |file| File.size("#{path}/#{file}") }
+  oldest_files.sort_by { |file| File.size("#{path}/#{file}") }
+              .reverse
 end

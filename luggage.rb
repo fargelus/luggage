@@ -2,7 +2,8 @@
 # frozen_string_literal: true
 
 require_relative 'lib/files'
+require_relative 'lib/report'
 
-dir_path = ARGV[0]
-file = largest_less_used_file(dir_path)
-puts file
+dir_path, count = ARGV
+files = luggage(dir_path, amount: count.to_i)
+print_report(dir_path, files)
