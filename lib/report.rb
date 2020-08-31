@@ -3,7 +3,7 @@
 def get_pretty_file_size(path)
   bytes = File.size(path)
   size = bytes
-  measure = ['Kb', 'Mb', 'Gb'].detect do |measure|
+  measure = %w[Kb Mb Gb].detect do
     size /= 1024
     (size / 1024).zero?
   end
