@@ -13,21 +13,29 @@ module Luggage
           options[:recursive] = true
         end
 
-        opts.on('--sort=[size|limit]', 'Sort output files with given param') do |sort_type|
+        opts.on('--sort=[size|time]', 'Sort output files with given param') do |sort_type|
           # TODO
-          exit(0) unless %w[size limit].include? sort_type
+          exit(0) unless %w[size time].include? sort_type
 
           options[:sort] = sort_type
         end
 
         opts.on('-h', '--help', 'Prints help') do
-          puts opts
-          exit
+          help!(opts)
         end
       end
 
       opt_parser.parse!
+      help!(opt_parser) if ARGV.size < 2
+
       options
+    rescue OptionParser::InvalidOption
+      help!(opt_parser)
+    end
+
+    def help!(options)
+      puts options
+      exit
     end
 
     def options_banner

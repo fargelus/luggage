@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'luggage/version'
-require_relative 'luggage/report'
+require_relative 'luggage/helpers'
 require_relative 'luggage/options'
 
 module Luggage
@@ -9,6 +9,7 @@ module Luggage
 
   class Tool
     include Options
+    include Helpers
 
     def initialize
       @options = parse_options
@@ -16,9 +17,14 @@ module Luggage
       @count = ARGV[1].to_i || 1
     end
 
-    def collect
-      @luggage = collect_luggage
-      p @luggage
+    def print_report
+      spaces = 15
+      puts 'Size'.ljust(spaces) + 'File'
+      collect_luggage.each do |file|
+        full_path = "#{@dir_path}/#{file}"
+        file_size, measure = get_pretty_file_size(full_path)
+        puts "#{file_size} #{measure}".ljust(spaces) + file
+      end
     end
 
     private
@@ -38,5 +44,4 @@ module Luggage
   end
 end
 
-luggage = Luggage::Tool.new
-luggage.collect
+Luggage::Tool.new.print_report
