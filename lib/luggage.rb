@@ -18,28 +18,29 @@ module Luggage
     end
 
     def print_report
-      spaces = 15
-      puts 'Size'.ljust(spaces) + 'File'
-      collect_luggage.each do |file|
+      luggage = collect_luggage
+      exit(0) if luggage.empty?
+
+      spaces = luggage.max_by { |file, *| file.size }.first.size + 5
+      puts 'Size'.ljust(spaces) + 'File'.ljust(spaces) + 'Used'
+
+      luggage.each do |file, timing|
         full_path = "#{@dir_path}/#{file}"
         file_size, measure = get_pretty_file_size(full_path)
-        puts "#{file_size} #{measure}".ljust(spaces) + file
+        time_without_zone = timing.strftime('%d %b %Y %H:%M:%S')
+        puts "#{file_size} #{measure}".ljust(spaces) + file.ljust(spaces) + time_without_zone
       end
     end
 
     private
 
     def collect_luggage
-      oldest_files = get_files_in_dir.min_by(@count) { |file| File.atime("#{@dir_path}/#{file}") }
+      oldest_files = files_timings(@dir_path).min_by(@count) { |*, timing| timing }
+                                             .to_h
       return oldest_files.first(1) if oldest_files.size == 1
 
-      oldest_files.sort_by { |file| File.size("#{@dir_path}/#{file}") }
+      oldest_files.sort_by { |file, *| File.size("#{@dir_path}/#{file}") }
                   .reverse
-    end
-
-    def get_files_in_dir
-      entries = Dir.entries(@dir_path)
-      entries.reject { |e| File.directory?("#{@dir_path}/#{e}") }
     end
   end
 end
