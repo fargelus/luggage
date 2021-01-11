@@ -2,3 +2,5 @@
 # frozen_string_literal: true
 
 require 'luggage'
+
+Luggage::Tool.new.print_report
