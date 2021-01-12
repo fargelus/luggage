@@ -7,13 +7,12 @@ module Luggage
     include Helpers
 
     attr_reader :spaces; private :spaces
+    attr_writer :files
 
     def initialize(dir, options)
       @dir = dir
       @options = options
     end
-
-    attr_writer :files
 
     def print
       exit(0) if @files.empty?
