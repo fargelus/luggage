@@ -32,8 +32,7 @@ module Luggage
                                        .map { |path, timing| [path.gsub(%r{/{2,}}, '/'), timing] }
       return oldest_files.first(1) if oldest_files.size == 1
 
-      oldest_files.sort_by { |path, *| File.size(path) }
-                  .reverse
+      oldest_files
     end
 
     def recursive_luggage

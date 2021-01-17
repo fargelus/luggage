@@ -34,9 +34,9 @@ module Luggage
     end
 
     def default_print
-      @files.each do |file, timing|
-        print_row(file, timing)
-      end
+      @files.sort_by { |path, *| File.size(path) }
+            .reverse
+            .each { |file, timing| print_row(file, timing) }
     end
 
     def print_row(file, timing)
