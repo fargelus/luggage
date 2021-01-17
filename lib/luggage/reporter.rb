@@ -9,8 +9,7 @@ module Luggage
     attr_reader :spaces; private :spaces
     attr_writer :files
 
-    def initialize(dir, options)
-      @dir = dir
+    def initialize(options)
       @options = options
     end
 
@@ -26,8 +25,12 @@ module Luggage
 
     private
 
+    def default_spaces
+      20
+    end
+
     def header
-      puts 'Size'.ljust(spaces) + 'File'.ljust(spaces) + 'Used'
+      puts 'Size'.ljust(default_spaces) + 'File'.ljust(spaces) + 'Used'
     end
 
     def default_print
@@ -37,10 +40,9 @@ module Luggage
     end
 
     def print_row(file, timing)
-      full_path = "#{@dir}/#{file}"
-      file_size, measure = get_pretty_file_size(full_path)
+      file_size, measure = get_pretty_file_size(file)
       time_without_zone = timing.strftime('%d %b %Y %H:%M:%S')
-      puts "#{file_size} #{measure}".ljust(spaces) + file.ljust(spaces) + time_without_zone
+      puts "#{file_size} #{measure}".ljust(default_spaces) + file.ljust(spaces) + time_without_zone
     end
 
     def sorted_by_time_print
