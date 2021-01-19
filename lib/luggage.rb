@@ -6,8 +6,6 @@ require_relative 'luggage/options'
 require_relative 'luggage/reporter'
 
 module Luggage
-  class Error < StandardError; end
-
   class Tool
     include Options
     include Helpers
@@ -43,5 +41,3 @@ module Luggage
     end
   end
 end
-
-Luggage::Tool.new.print_report
