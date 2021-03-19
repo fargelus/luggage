@@ -32,6 +32,14 @@ Options:
     -h, --help                       Prints help
 ```
 
+## Usage example
+
+With sort option:
+![Example_1](./about/example_1.png)
+
+All available options:
+![Example_2](./about/example_1.png)
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
