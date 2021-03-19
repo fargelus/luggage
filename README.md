@@ -33,7 +33,7 @@ Options:
     -h, --help                       Prints help
 ```
 
-## Usage example
+## Usage examples
 
 ### With sort option:
 ![Example_1](./about/example_1.png)
