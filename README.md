@@ -34,10 +34,10 @@ Options:
 
 ## Usage example
 
-With sort option:
+### With sort option:
 ![Example_1](./about/example_1.png)
 
-All available options:
+### All available options:
 ![Example_2](./about/example_1.png)
 
 ## License
