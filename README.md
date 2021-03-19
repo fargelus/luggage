@@ -1,6 +1,7 @@
 # Luggage 👜
 
-Luggage(lge) its a simple cli tool. If you ever wants to know which files in your filesystem outdate this gem for you. Luggage finds less used files in choosen directory and sorts it by file size. After launch it prints report with some statics about file.
+Luggage(lge) its a simple cli tool.  
+If you ever wants to know which files in your filesystem outdate this gem for you. Luggage finds less used files in choosen directory and sorts it by file size. After launch it prints report with some statics about file.
 
 ![Demo](./about/demo_launch.png)
 
