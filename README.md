@@ -39,7 +39,7 @@ Options:
 ![Example_1](./about/example_1.png)
 
 ### All available options:
-![Example_2](./about/example_1.png)
+![Example_2](./about/example_2.png)
 
 ## License
 
